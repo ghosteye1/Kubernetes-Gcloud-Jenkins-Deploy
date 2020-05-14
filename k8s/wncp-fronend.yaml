@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: wncp-fronend
+  name: wncp-fronend
+  namespace: wncp-test-1
+spec:
+  minReadySeconds: 60
+  progressDeadlineSeconds: 600
+  replicas: 3
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: wncp-fronend
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: wncp-fronend
+    spec:
+      containers:
+      - image: gcr.io/wn-cloud-275704/cloud-portal-frontend@sha256:a43821b760dbb883e089f55c12b2a5553f4017bc812f733a1403452402026134
+        imagePullPolicy: IfNotPresent
+        name: cloud-portal-frontend-sha256-1
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
