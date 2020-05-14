@@ -15,7 +15,7 @@ metadata:
   # uid: 42a008f4-8d7b-11ea-88ce-42010a8001f5
 spec:
   backend:
-    serviceName: wncp-fronend-service-1
+    serviceName: nginx-deployment-2
     servicePort: 8080
   rules:
   - http:
