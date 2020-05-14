@@ -26,9 +26,13 @@ pipeline {
         // }
         stage('Sending success response to portal') {
             steps{
-                def response = httpRequest "http://dummy.restapiexample.com/api/v1/employees"
-                println('Status: '+response.status)
-                println('Response: '+response.content)
+                echo 'Sending success response to portal------>'
+
+                script {
+                    def response = httpRequest "http://dummy.restapiexample.com/api/v1/employees"
+                    println('Status: '+response.status)
+                    println('Response: '+response.content)
+                }
             }
         }
 
